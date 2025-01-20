@@ -1,5 +1,5 @@
 import { useState, useContext, createContext } from "react";
-import { generate_people } from "../utils/generate_dummy_data";
+import { generate_groups, generate_people } from "../utils/generate_dummy_data";
 
 export type Chat = {
   data: string;
@@ -13,7 +13,11 @@ export type Person = {
 
 export type Group = {
   name: string;
-  people: Person[];
+  chats: {
+    name: string;
+    data: string;
+    time: string;
+  }[];
 };
 
 export type ConversationsContextType = {
@@ -32,7 +36,7 @@ export default function ConversationsContext({
 }: {
   children: React.ReactNode;
 }) {
-  const [groups, setGroups] = useState<Group[]>([]);
+  const [groups, setGroups] = useState<Group[]>(generate_groups());
   const [people, setPeople] = useState<Person[]>(generate_people());
 
   const values: ConversationsContextType = {

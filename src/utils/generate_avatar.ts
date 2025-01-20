@@ -1,10 +1,8 @@
 import { createAvatar } from "@dicebear/core";
-import { micah  } from "@dicebear/collection";
+import { micah } from "@dicebear/collection";
 
-
-export default function generate_avatar() {
-
-  const avatar = createAvatar(micah, {});
+export default function generate_avatar(seed?: string) {
+  const avatar = createAvatar(micah, { seed });
 
   return avatar.toDataUri();
 }
