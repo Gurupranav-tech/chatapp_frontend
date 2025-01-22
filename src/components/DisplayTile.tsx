@@ -1,18 +1,15 @@
-import generate_avatar from "../utils/generate_avatar";
-import generate_shapes from "../utils/generate_shapes";
-
 type Props = {
   title: string;
   time: string;
   lastMessage: string;
   imageType?: "shape" | "avatar";
   order: number;
+  image: string;
 };
 
 const timeFormatter = new Intl.DateTimeFormat("en-US");
 
-export default function DisplayTile({ title, time, lastMessage, imageType="avatar", order }: Props) {
-  const image = imageType === "avatar" ? generate_avatar(title) : generate_shapes(title);
+export default function DisplayTile({ image, title, time, lastMessage, imageType="avatar", order }: Props) {
 
   return (
     <div style={{ animationDelay: `${order/100}s`  }}  className="flex items-center gap-3 py-2 cursor-pointer animate">

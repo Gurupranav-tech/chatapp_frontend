@@ -26,6 +26,7 @@ export default function ContactsList() {
             time={getLastElement(person.chats).time}
             imageType="shape"
             order={idx+1}
+            image={person.image}
           />
         ))}
       </ConversationsList>
@@ -37,6 +38,7 @@ export default function ContactsList() {
             lastMessage={getLastElement(person.chats).data}
             time={getLastElement(person.chats).time}
             order={idx+1}
+            image={person.image}
           />
         ))}
       </ConversationsList>
