@@ -1,6 +1,5 @@
 import { useState, useContext, createContext } from "react";
-import { generate_groups, generate_people } from "../utils/generate_dummy_data";
-import { faker } from "@faker-js/faker";
+import { generate_groups, generate_people, USERNAME } from "../utils/generate_dummy_data";
 
 export type Select = "group" | "person" | "none";
 
@@ -52,7 +51,7 @@ export default function ConversationsContext({
 }: {
   children: React.ReactNode;
 }) {
-  const [username, setUsername] = useState<string>(faker.internet.username());
+  const [username, setUsername] = useState<string>(USERNAME);
   const [groups, setGroups] = useState<Group[]>(generate_groups());
   const [people, setPeople] = useState<Person[]>(generate_people());
   const [selected, setSelected] = useState<Select>("none");

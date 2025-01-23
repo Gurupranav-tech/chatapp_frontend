@@ -1,7 +1,9 @@
 import { faker } from "@faker-js/faker";
-import type { Person, Chat } from "../contexts/ConversationsContext";
 import generate_avatar from "./generate_avatar";
 import generate_shapes from "./generate_shapes";
+import { Person } from "../contexts/ConversationsContext";
+
+export const USERNAME = faker.internet.username();
 
 export function generate_people() {
   const gen_person: () => Person = () => {
@@ -13,7 +15,7 @@ export function generate_people() {
         () => ({
           data: faker.lorem.text(),
           time: faker.date.anytime().toString(),
-          from: name,
+          from: Math.random() >= 0.5 ? USERNAME : name,
         }),
         { count: 6 },
       ),
@@ -27,7 +29,7 @@ export function generate_people() {
 
 export function generate_groups() {
   const gen_chat = () => ({
-    name: faker.internet.username(),
+    name: Math.random() >= 0.5 ? USERNAME : faker.internet.username(),
     data: faker.lorem.text(),
     time: faker.date.anytime().toString(),
   });
