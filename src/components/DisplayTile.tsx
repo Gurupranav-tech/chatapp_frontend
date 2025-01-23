@@ -2,17 +2,17 @@ type Props = {
   title: string;
   time: string;
   lastMessage: string;
-  imageType?: "shape" | "avatar";
   order: number;
   image: string;
+  onClick?: () => void;
 };
 
 const timeFormatter = new Intl.DateTimeFormat("en-US");
 
-export default function DisplayTile({ image, title, time, lastMessage, imageType="avatar", order }: Props) {
+export default function DisplayTile({ onClick, image, title, time, lastMessage, order }: Props) {
 
   return (
-    <div style={{ animationDelay: `${order/100}s`  }}  className="flex items-center gap-3 py-2 cursor-pointer animate">
+    <div onClick={onClick} style={{ animationDelay: `${order/100}s`  }}  className="flex items-center gap-3 py-2 cursor-pointer animate">
       <div className="w-8 h-8 rounded-full">
         <img src={image} className="w-8 h-8 rounded-full" />
       </div>

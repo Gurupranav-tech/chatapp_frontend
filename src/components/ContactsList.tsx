@@ -5,10 +5,16 @@ import { useConversations } from "../contexts/ConversationsContext";
 import { getLastElement } from "../utils/generate_dummy_data";
 
 export default function ContactsList() {
-  const { people, groups } = useConversations();
+  const {
+    people,
+    groups,
+    changeSelected,
+    changeSelectedPerson,
+    changeSelectedGroup,
+  } = useConversations();
 
   return (
-    <div className="flex flex-col gap-8 flex-[0.5]">
+    <section aria-label="Shows the list of contacts" className="flex flex-col gap-8 flex-[0.5]">
       <div className="bg-white flex items-center text-gray-500 px-4 py-2 rounded-lg gap-3 shadow-shadow-color shadow-lg">
         <FaSearch />
         <input
@@ -24,9 +30,13 @@ export default function ContactsList() {
             title={person.name}
             lastMessage={getLastElement(person.chats).data}
             time={getLastElement(person.chats).time}
-            imageType="shape"
-            order={idx+1}
+            order={idx + 1}
             image={person.image}
+            onClick={() => {
+              changeSelected("group");
+              changeSelectedGroup(person);
+              changeSelectedPerson(null);
+            }}
           />
         ))}
       </ConversationsList>
@@ -37,11 +47,16 @@ export default function ContactsList() {
             title={person.name}
             lastMessage={getLastElement(person.chats).data}
             time={getLastElement(person.chats).time}
-            order={idx+1}
+            order={idx + 1}
             image={person.image}
+            onClick={() => {
+              changeSelected("person");
+              changeSelectedPerson(person);
+              changeSelectedGroup(null);
+            }}
           />
         ))}
       </ConversationsList>
-    </div>
+    </section>
   );
 }

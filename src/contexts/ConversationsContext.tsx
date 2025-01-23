@@ -1,17 +1,20 @@
 import { useState, useContext, createContext } from "react";
 import { generate_groups, generate_people } from "../utils/generate_dummy_data";
+import { faker } from "@faker-js/faker";
 
 export type Select = "group" | "person" | "none";
 
 export type Chat = {
   data: string;
   time: string;
+  from: string;
 };
 
 export type Person = {
   name: string;
   image: string;
   chats: Chat[];
+  status: "online" | "offline";
 };
 
 export type Group = {
@@ -30,10 +33,12 @@ export type ConversationsContextType = {
   selected: Select;
   selectedGroup: Group | null;
   selectedPerson: Person | null;
+  username: string;
 
   changeSelected: (s: Select) => void;
   changeSelectedGroup: (g: Group | null) => void;
   changeSelectedPerson: (p: Person | null) => void;
+  changeUsername: (s: string) => void;
 };
 
 const context = createContext({} as ConversationsContextType);
@@ -47,6 +52,7 @@ export default function ConversationsContext({
 }: {
   children: React.ReactNode;
 }) {
+  const [username, setUsername] = useState<string>(faker.internet.username());
   const [groups, setGroups] = useState<Group[]>(generate_groups());
   const [people, setPeople] = useState<Person[]>(generate_people());
   const [selected, setSelected] = useState<Select>("none");
@@ -59,10 +65,12 @@ export default function ConversationsContext({
     selected,
     selectedGroup,
     selectedPerson,
+    username,
 
     changeSelected: setSelected,
     changeSelectedGroup: setSelectedGroup,
     changeSelectedPerson: setSelectedPerson,
+    changeUsername: setUsername,
   };
 
   return <context.Provider value={values}>{children}</context.Provider>;
