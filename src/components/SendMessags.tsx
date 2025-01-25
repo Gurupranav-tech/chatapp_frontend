@@ -1,12 +1,22 @@
 import { GoPaperclip, GoSmiley } from "react-icons/go";
-import { CiCamera } from "react-icons/ci";
 import { FaMicrophone } from "react-icons/fa";
 import { IoMdSend } from "react-icons/io";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { useConversations } from "../contexts/ConversationsContext";
+import { USERNAME } from "../utils/generate_dummy_data";
 
 export default function SendMessage() {
   const [message, setMessage] = useState("");
+  const { addPersonalChat, selected, addGroupChat } = useConversations();
+
+  const handleMainBtn = () => {
+    if (!message) return;
+    if (selected === "person") addPersonalChat(message, new Date().toString());
+    if (selected === "group")
+      addGroupChat(message, USERNAME, new Date().toString());
+    setMessage("");
+  };
 
   return (
     <div className="flex items-center gap-5">
@@ -24,6 +34,7 @@ export default function SendMessage() {
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         className="outline-none text-white text-2xl bg-primary-color h-full px-4 rounded-lg"
+        onClick={handleMainBtn}
       >
         {message === "" ? <FaMicrophone /> : <IoMdSend />}
       </motion.button>

@@ -1,5 +1,10 @@
-import { useState, useContext, createContext } from "react";
-import { generate_groups, generate_people, USERNAME } from "../utils/generate_dummy_data";
+import { useState, useContext, createContext, useEffect } from "react";
+import {
+  generate_groups,
+  generate_people,
+  getLastElement,
+  USERNAME,
+} from "../utils/generate_dummy_data";
 
 export type Select = "group" | "person" | "none";
 
@@ -38,6 +43,8 @@ export type ConversationsContextType = {
   changeSelectedGroup: (g: Group | null) => void;
   changeSelectedPerson: (p: Person | null) => void;
   changeUsername: (s: string) => void;
+  addPersonalChat: (data: string, time: string) => void;
+  addGroupChat: (data: string, name: string, time: string) => void;
 };
 
 const context = createContext({} as ConversationsContextType);
@@ -58,6 +65,54 @@ export default function ConversationsContext({
   const [selectedGroup, setSelectedGroup] = useState<Group | null>(null);
   const [selectedPerson, setSelectedPerson] = useState<Person | null>(null);
 
+  const addPersonalChat = (data: string, time: string) => {
+    setPeople((p) =>
+      p
+        .map((a) => {
+          if (!selectedPerson) return a;
+          if (a.name !== selectedPerson.name) return a;
+          a.chats.push({
+            data,
+            time,
+            from: USERNAME,
+          });
+          return a;
+        })
+        .sort((a, b) => {
+          return new Date(getLastElement(a.chats).time) >=
+            new Date(getLastElement(b.chats).time)
+            ? -1
+            : 1;
+        }),
+    );
+    setSelectedPerson((p) => {
+      const a = people.find((a) => a.name === p?.name);
+      return a ? a : null;
+    });
+  };
+
+  const addGroupChat = (data: string, name: string, time: string) => {
+    setGroups((g) =>
+      g
+        .map((a) => {
+          if (!selectedGroup) return a;
+          if (a.name !== selectedGroup.name) return a;
+          a.chats.push({
+            data,
+            name,
+            time,
+          });
+          return a;
+        })
+        .sort((a, b) => {
+          return new Date(getLastElement(a.chats).time) >=
+            new Date(getLastElement(b.chats).time)
+            ? -1
+            : 1;
+        }),
+    );
+  };
+
   const values: ConversationsContextType = {
     groups,
     people,
@@ -70,6 +125,8 @@ export default function ConversationsContext({
     changeSelectedGroup: setSelectedGroup,
     changeSelectedPerson: setSelectedPerson,
     changeUsername: setUsername,
+    addPersonalChat,
+    addGroupChat,
   };
 
   return <context.Provider value={values}>{children}</context.Provider>;

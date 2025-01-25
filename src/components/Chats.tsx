@@ -15,8 +15,7 @@ export default function Chats() {
     return <PersonalChat chat={selectedPerson} />;
   else if (selected === "group" && selectedGroup)
     return <GroupChat chat={selectedGroup} />;
-
-  return <div className="flex-1"></div>;
+  else return <div className="flex-1"></div>;
 }
 
 function PersonalChat({ chat }: { chat: Person }) {
@@ -25,7 +24,7 @@ function PersonalChat({ chat }: { chat: Person }) {
   useEffect(() => {
     if (!chat_section.current) return;
     chat_section.current.scrollTop = chat_section.current.scrollHeight;
-  }, [chat]);
+  }, [JSON.stringify(chat)]);
 
   return (
     <div
@@ -53,7 +52,7 @@ function GroupChat({ chat }: { chat: Group }) {
   useEffect(() => {
     if (!chat_section.current) return;
     chat_section.current.scrollTop = chat_section.current.scrollHeight;
-  }, [chat]);
+  }, [JSON.stringify(chat)]);
 
   return (
     <div

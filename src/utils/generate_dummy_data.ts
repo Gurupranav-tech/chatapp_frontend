@@ -14,7 +14,7 @@ export function generate_people() {
       chats: faker.helpers.multiple(
         () => ({
           data: faker.lorem.text(),
-          time: faker.date.anytime().toString(),
+          time: faker.date.past().toString(),
           from: Math.random() >= 0.5 ? USERNAME : name,
         }),
         { count: 6 },
@@ -24,17 +24,24 @@ export function generate_people() {
     };
   };
 
-  return faker.helpers.multiple(gen_person, { count: 13 });
+  const arr = faker.helpers.multiple(gen_person, { count: 13 });
+  arr.sort((a, b) => {
+    return new Date(getLastElement(a.chats).time) >=
+      new Date(getLastElement(b.chats).time)
+      ? -1
+      : 1;
+  });
+  return arr;
 }
 
 export function generate_groups() {
   const gen_chat = () => ({
     name: Math.random() >= 0.5 ? USERNAME : faker.internet.username(),
     data: faker.lorem.text(),
-    time: faker.date.anytime().toString(),
+    time: faker.date.past().toString(),
   });
 
-  return faker.helpers.multiple(
+  const arr = faker.helpers.multiple(
     () => {
       return {
         name: faker.word.noun(),
@@ -44,6 +51,13 @@ export function generate_groups() {
     },
     { count: 10 },
   );
+  arr.sort((a, b) => {
+    return new Date(getLastElement(a.chats).time) >=
+      new Date(getLastElement(b.chats).time)
+      ? -1
+      : 1;
+  });
+  return arr;
 }
 
 export function getLastElement<T>(arr: T[]): T {
