@@ -41,6 +41,7 @@ export default function ContactsList() {
               changeSelectedGroup(person);
               changeSelectedPerson(null);
             }}
+            status="none"
           />
         ))}
       </ConversationsList>
@@ -58,6 +59,7 @@ export default function ContactsList() {
               changeSelectedPerson(person);
               changeSelectedGroup(null);
             }}
+            status={person.status}
           />
         ))}
       </ConversationsList>

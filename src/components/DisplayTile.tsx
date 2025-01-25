@@ -4,22 +4,43 @@ type Props = {
   lastMessage: string;
   order: number;
   image: string;
+  status: "online" | "offline" | "none";
   onClick?: () => void;
 };
 
 const timeFormatter = new Intl.DateTimeFormat("en-US");
 
-export default function DisplayTile({ onClick, image, title, time, lastMessage, order }: Props) {
+export default function DisplayTile({
+  onClick,
+  image,
+  title,
+  time,
+  lastMessage,
+  order,
+  status,
+}: Props) {
+  const styles =
+    status !== "none"
+      ? `outline outline-3 ${status === "online" ? "outline-green-700" : "outline-gray-700"}`
+      : ``;
 
   return (
-    <div onClick={onClick} style={{ animationDelay: `${order/100}s`  }}  className="flex items-center gap-3 py-2 cursor-pointer animate">
-      <div className="w-8 h-8 rounded-full">
+    <div
+      onClick={onClick}
+      style={{ animationDelay: `${order / 100}s` }}
+      className="flex items-center gap-3 py-2 cursor-pointer animate"
+    >
+      <div
+        className={`w-8 h-8 rounded-full ${styles}`}
+      >
         <img src={image} className="w-8 h-8 rounded-full" />
       </div>
       <div className="flex-1 w-full">
         <div className="flex items-center">
           <h3>{title.length >= 10 ? `${title.slice(0, 10)}...` : title}</h3>
-          <span className="inline text-[0.75rem] text-gray-500 ml-auto">{timeFormatter.format(new Date(time))}</span>
+          <span className="inline text-[0.75rem] text-gray-500 ml-auto">
+            {timeFormatter.format(new Date(time))}
+          </span>
         </div>
         <div>
           <p className="text-sm text-gray-600">
