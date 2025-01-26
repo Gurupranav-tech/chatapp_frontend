@@ -29,7 +29,7 @@ function PersonalChat({ chat }: { chat: Person }) {
   return (
     <div
       ref={chat_section}
-      className="flex-1 overflow-y-auto [&::-webkit-scrollbar]:w-2 border_child
+      className="flex-1 md:overflow-y-auto [&::-webkit-scrollbar]:w-2 border_child
   [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-track]:rounded-lg
   [&::-webkit-scrollbar-thumb]:bg-gray-300 flex flex-col gap-5 px-2"
     >
@@ -58,7 +58,7 @@ function GroupChat({ chat }: { chat: Group }) {
   return (
     <div
       ref={chat_section}
-      className="flex-1 relative  overflow-y-auto [&::-webkit-scrollbar]:w-2 border_child
+      className="flex-1 relative  md:overflow-y-auto [&::-webkit-scrollbar]:w-2 border_child
   [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-track]:rounded-lg
   [&::-webkit-scrollbar-thumb]:bg-gray-300 flex flex-col gap-5 px-2"
     >
