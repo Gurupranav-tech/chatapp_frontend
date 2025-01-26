@@ -12,11 +12,16 @@ export function generate_people() {
     return {
       name,
       chats: faker.helpers.multiple(
-        () => ({
-          data: faker.lorem.text(),
-          time: faker.date.past().toString(),
-          from: Math.random() >= 0.5 ? USERNAME : name,
-        }),
+        () => {
+          const from = Math.random() >= 0.5 ? USERNAME : name;
+
+          return {
+            data: faker.lorem.text(),
+            time: faker.date.past().toString(),
+            from,
+            read: from === USERNAME ? false : "na",
+          };
+        },
         { count: 6 },
       ),
       image: generate_avatar(),

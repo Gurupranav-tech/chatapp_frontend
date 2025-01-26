@@ -21,3 +21,28 @@
     transform: translateX(0%);
   }
 }
+
+.msg-ignored, .msg-read {
+  position: relative;
+  @apply mb-2;
+}
+
+.msg-ignored::after, .msg-read::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: calc(0% - 16px);
+  --size: 16px;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 100%;
+}
+
+.msg-ignored::after {
+  outline: 2px solid;
+  @apply outline-primary-color;
+}
+
+.msg-read::after {
+  @apply bg-primary-color;
+}

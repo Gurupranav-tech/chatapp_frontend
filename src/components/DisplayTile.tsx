@@ -21,7 +21,7 @@ export default function DisplayTile({
 }: Props) {
   const styles =
     status !== "none"
-      ? `outline outline-3 ${status === "online" ? "outline-green-700" : "outline-gray-700"}`
+      ? ` outline outline-3 ${status === "online" ? "outline-green-400" : "outline-gray-700"}`
       : ``;
 
   return (

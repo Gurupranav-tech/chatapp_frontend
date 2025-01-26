@@ -5,16 +5,17 @@ type Props = {
   time: string;
   name: string;
   type: "personal" | "group";
+  read: boolean | "na";
 };
 
 const timeFormatter = new Intl.DateTimeFormat("en-US");
 
-export default function MessageTile({ data, time, name, type }: Props) {
+export default function MessageTile({ data, time, name, type, read }: Props) {
   const { username } = useConversations();
 
   return (
     <div
-      className={`${username === name ? "bg-primary-color text-white ml-auto" : "bg-gray-100"} px-5 py-1 rounded-lg w-4/5 text-sm`}
+      className={`${read !== "na" ? (read ? "msg-read" : "msg-ignored") : ""} ${username === name ? "bg-primary-color text-white ml-auto" : "bg-gray-100"} px-5 py-1 rounded-lg w-4/5 text-sm`}
     >
       {type === "group" && (
         <div className="pb-2">

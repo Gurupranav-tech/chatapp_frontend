@@ -12,6 +12,7 @@ export type Chat = {
   data: string;
   time: string;
   from: string;
+  read: boolean | 'na';
 };
 
 export type Person = {
@@ -75,6 +76,7 @@ export default function ConversationsContext({
             data,
             time,
             from: USERNAME,
+            read: false,
           });
           return a;
         })

@@ -40,6 +40,7 @@ function PersonalChat({ chat }: { chat: Person }) {
           time={c.time}
           type="personal"
           key={idx}
+          read={c.read}
         />
       ))}
     </div>
@@ -68,6 +69,7 @@ function GroupChat({ chat }: { chat: Group }) {
           time={c.time}
           type="group"
           key={idx}
+          read="na"
         />
       ))}
     </div>
