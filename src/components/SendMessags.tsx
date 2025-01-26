@@ -55,7 +55,7 @@ export default function SendMessage() {
       <motion.button
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
-        className="outline-none text-white text-2xl bg-primary-color min-h-full px-4 rounded-lg"
+        className="outline-none text-white text-2xl bg-primary-color min-h-full py-2 px-4 rounded-lg"
         onClick={handleMainBtn}
       >
         {message === "" ? <FaMicrophone /> : <IoMdSend />}
