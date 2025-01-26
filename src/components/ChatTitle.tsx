@@ -5,6 +5,7 @@ import { HiDotsVertical } from "react-icons/hi";
 import { motion } from "framer-motion";
 import { IoIosArrowBack } from "react-icons/io";
 import useScreenType from "../hooks/useScreentype";
+import { toast } from "react-toastify";
 
 export default function ChatTitle() {
   const screen = useScreenType();
@@ -53,6 +54,12 @@ export default function ChatTitle() {
           className="cursor-pointer"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
+          onClick={() =>
+            toast.warn("Need a server to implement!", {
+              theme: "colored",
+              draggable: true,
+            })
+          }
         >
           <IoCallOutline />
         </motion.div>
@@ -60,6 +67,12 @@ export default function ChatTitle() {
           className="cursor-pointer"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
+          onClick={() =>
+            toast.warn("Need a server to implement!", {
+              theme: "colored",
+              draggable: true,
+            })
+          }
         >
           <BsCameraReels />
         </motion.div>
@@ -67,6 +80,12 @@ export default function ChatTitle() {
           className="cursor-pointer"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
+          onClick={() =>
+            toast.warn("Need a server to implement!", {
+              theme: "colored",
+              draggable: true,
+            })
+          }
         >
           <HiDotsVertical />
         </motion.div>

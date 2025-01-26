@@ -1,6 +1,7 @@
 import Chat from "./components/Chat";
 import ContactsList from "./components/ContactsList";
 import Sidebar from "./components/Sidebar";
+import { ToastContainer  } from "react-toastify";
 import { useConversations } from "./contexts/ConversationsContext";
 import useScreenType from "./hooks/useScreentype";
 
@@ -19,6 +20,7 @@ export default function App() {
           <Chat />
         </>
       )}
+      <ToastContainer />
     </div>
   );
 }

@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { useConversations } from "../contexts/ConversationsContext";
 import { USERNAME } from "../utils/generate_dummy_data";
 import EmojiPicker from "emoji-picker-react";
+import { toast } from "react-toastify";
 
 export default function SendMessage() {
   const [message, setMessage] = useState("");
@@ -27,7 +28,15 @@ export default function SendMessage() {
   return (
     <div className="flex items-center gap-5">
       <div className="relative bg-[#EFF6FC] flex-1 text-lg py-2 px-4 rounded-xl flex gap-3 items-center">
-        <GoPaperclip className="outline-none text-gray-700 text-2xl cursor-pointer" />
+        <GoPaperclip
+          onClick={() => {
+            toast.warn("Not Implemented!", {
+              draggable: true,
+              theme: "colored",
+            });
+          }}
+          className="outline-none text-gray-700 text-2xl cursor-pointer"
+        />
         <GoSmiley
           className="outline-none text-gray-700 text-2xl cursor-pointer"
           onClick={(e) => {
@@ -58,7 +67,18 @@ export default function SendMessage() {
         className="outline-none text-white text-2xl bg-primary-color min-h-full py-2 px-4 rounded-lg"
         onClick={handleMainBtn}
       >
-        {message === "" ? <FaMicrophone /> : <IoMdSend />}
+        {message === "" ? (
+          <FaMicrophone
+            onClick={() => {
+              toast.warn("Not implemented!", {
+                theme: "colored",
+                draggable: true,
+              });
+            }}
+          />
+        ) : (
+          <IoMdSend />
+        )}
       </motion.button>
     </div>
   );
