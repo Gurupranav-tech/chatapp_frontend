@@ -46,3 +46,9 @@
 .msg-read::after {
   @apply bg-primary-color;
 }
+
+.emoji-picker-container {
+  position: absolute;
+  height: 300px;
+  top: calc(0% - 460px);
+}
