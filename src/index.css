@@ -22,12 +22,14 @@
   }
 }
 
-.msg-ignored, .msg-read {
+.msg-ignored,
+.msg-read {
   position: relative;
   @apply mb-2;
 }
 
-.msg-ignored::after, .msg-read::after {
+.msg-ignored::after,
+.msg-read::after {
   content: "";
   position: absolute;
   top: 100%;
@@ -51,4 +53,9 @@
   position: absolute;
   height: 300px;
   top: calc(0% - 460px);
+}
+
+.font-size {
+  font-size: clamp(0.8rem, 1.5rem, 1.875rem);
+  gap: clamp(0.5rem, 2rem, 2.5rem);
 }

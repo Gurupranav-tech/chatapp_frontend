@@ -42,6 +42,7 @@ export default function SendMessage() {
           <EmojiPicker
             open={show}
             onEmojiClick={(e) => setMessage((m) => m + e.emoji)}
+            lazyLoadEmojis
           />
         </div>
         <input
