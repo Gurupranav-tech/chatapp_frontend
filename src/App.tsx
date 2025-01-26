@@ -9,7 +9,7 @@ export default function App() {
   const { selected } = useConversations();
 
   return (
-    <div className="flex md:gap-5 flex-col-reverse md:flex-row md:flex md:flex-1 h-screen md:px-6 md:py-8">
+    <div className="md:gap-5 md:flex-row md:flex md:flex-1 h-screen md:px-6 md:py-8">
       {screen === "mobile" ? (
         <>{selected === "none" ? <ContactsList /> : <Chat />}</>
       ) : (
