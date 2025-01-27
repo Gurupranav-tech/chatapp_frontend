@@ -82,8 +82,8 @@ Welcome to the **ChatApp Frontend**, a blazing-fast, modern chat application fro
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/yourusername/gurupranav-tech-chatapp_frontend.git
-   cd gurupranav-tech-chatapp_frontend
+   git clone https://github.com/Gurupranav-tech/chatapp_frontend.git 
+   cd chatapp_frontend
    ```
 
 2. **Install Dependencies**:
